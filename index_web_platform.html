@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge Hub</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background-color: #f8f8f8;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: linear-gradient(to bottom, #9a5def, #648ef0);
+            color: #fff;
+            width: 250px;
+            height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            position: relative;
+        }
+
+        .image {
+            width: 20vw;
+            max-width: 165px;
+            position: absolute;
+            top: 1.7vh;
+            left: 1.5%;
+            z-index: 4;
+        }
+
+        .menu {
+            margin-top: 90px;
+            margin-left: 17px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            color: #e8e8e8;
+            text-decoration: none;
+            margin: 15px 0;
+            font-size: 20px;
+        }
+
+        .menu img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .menu a:hover {
+            color: #fff;
+        }
+
+        .divider {
+            height: 1.5px;
+            background-color: #fff;
+            width: 90%;
+            border-radius: 2px;
+            margin-top: -8px;
+            margin-bottom: 20px;
+        }
+
+        .bottom-links {
+            margin-left: 17px;
+            margin-bottom: 20px;
+        }
+
+        .bottom-links a {
+            display: flex;
+            align-items: center;
+            color: #e8e8e8;
+            text-decoration: none;
+            margin: 25px 0;
+            font-size: 20px;
+        }
+
+        .bottom-links img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .bottom-links a:hover {
+            color: #fff;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .header {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1 1 -1%;
+            min-width: 250px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px; /* Увеличиваем отступ под заголовком */
+        }
+
+        .card1 {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1 1 45%; /* Grow, shrink, and occupy 45% width */
+            min-width: 250px; /* Optional: To ensure it doesn't get too small */
+        }
+        .card2 {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1 1 32%; /* Grow, shrink, and occupy 45% width */
+            min-width: 250px; /* Optional: To ensure it doesn't get too small */
+        }
+        .card3 {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1 1 45%; /* Grow, shrink, and occupy 45% width */
+            min-width: 250px; /* Optional: To ensure it doesn't get too small */
+        }
+
+        .chart {
+            height: 220px;
+            background: #ffffff;
+            margin: 20px 0;
+        }
+
+        /* Leaderboard */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th, table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div>
+            <div class="menu">
+                <div class="menu-item">
+                    <a href="#"><img src="./overview.png" alt="Overview Icon">Overview</a>
+                    <div class="divider"></div>
+                </div>
+                <div class="menu-item">
+                    <a href="#"><img src="./settings.png" alt="Settings Icon">Settings</a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-links">
+            <a href="#"><img src="./contuct us.png" alt="Contact Us Icon">Contact us</a>
+            <a href="#"><img src="./log out.png" alt="Log Out Icon">Log out</a>
+        </div>
+    </div>
+    <img src="./LVLUP Logo.png" class="image">
+
+    <!-- Main Content -->
+    <div class="main">
+        <div class="header">Welcome back, Britt</div>
+
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <!-- Motivation Card -->
+            <div class="card">
+                <h3>Motivation</h3>
+                <canvas id="motivationChart" width="200" height="200" style="margin-top: 20px;"></canvas>
+            </div>
+
+            <!-- Motivation Over Time -->
+            <div class="card1">
+                <h3>Motivation over time</h3>
+                <div class="chart">[Line Chart Placeholder]</div>
+            </div>
+
+            <!-- Company Intelligence -->
+            <div class="card2">
+                <h3>Company intelligence</h3>
+                <p>Prince's motivation has remained very low for the past 2 weeks</p>
+                <button>Problem</button>
+                <button>Create challenge</button>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="card3">
+                <h3>Leaderboard</h3>
+                <table>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Motivation</th>
+                        <th>Change</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Chloe Chin</td>
+                        <td>High</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Aaron Skees</td>
+                        <td>High</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Mattis Nurit</td>
+                        <td>High</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Mattis Nurit</td>
+                        <td>High</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Mattis Nurit</td>
+                        <td>High</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Mattis Nurit</td>
+                        <td>High</td>
+                        <td>None</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Mattis Nurit</td>
+                        <td>High</td>
+                        <td>None</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('motivationChart').getContext('2d');
+const motivationChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['High', 'Medium', 'Low'],
+        datasets: [{
+            data: [45, 35, 20],
+            backgroundColor: ['#4e79a7', '#f28e2b', '#e15759'],
+            borderWidth: 1,
+            hoverOffset: 20
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    usePointStyle: true, // Используем стили в виде кружков
+                    pointStyle: 'circle', // Задаём форму кружков
+                    font: {
+                        size: 14
+                    }
+                }
+            },
+            tooltip: {
+                enabled: true
+            }
+        },
+        cutout: '70%',
+        elements: {
+            arc: {
+                borderRadius: 15,
+                hoverBorderRadius: 20
+            }
+        }
+    },
+    plugins: [{
+        id: 'customDraw',
+        beforeDraw: (chart) => {
+            const { width, height } = chart;
+            const ctx = chart.ctx;
+
+            // Центральный текст
+            ctx.save();
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = '#333';
+            ctx.fillText('Medium', width / 2, height / 2.6);
+            ctx.restore();
+
+            // Изменение размеров выступов
+            const dataset = chart.data.datasets[0];
+            dataset.hoverOffset = dataset.data.map(value => {
+                if (value === Math.max(...dataset.data)) return 10; // Самый большой выступает больше
+                if (value === Math.min(...dataset.data)) return 10; // Самый маленький выступает как обычно
+                return 10; // Средний немного больше обычного
+            });
+        }
+    }]
+});
+
+    </script>
+</body>
+</html>
+
