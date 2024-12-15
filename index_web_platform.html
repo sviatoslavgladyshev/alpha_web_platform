@@ -214,7 +214,7 @@
             <!-- Motivation Over Time -->
             <div class="card1">
                 <h3>Motivation over time</h3>
-                <div class="chart">[Line Chart Placeholder]</div>
+                <canvas id="motivationOverTimeChart" style="width: 100%; height: 100%;"></canvas>
             </div>
 
             <!-- Company Intelligence -->
@@ -284,7 +284,69 @@
     </div>
 
     <script>
-        const ctx = document.getElementById('motivationChart').getContext('2d');
+        const card1Element = document.querySelector('.card1');
+    const canvasElement = document.getElementById('motivationOverTimeChart');
+
+    // Установка размеров Canvas под размеры контейнера
+    canvasElement.width = card1Element.clientWidth;
+    canvasElement.height = card1Element.clientHeight - 40; // Учитываем высоту заголовка
+
+    // Линейный график "Motivation over time"
+    const motivationOverTimeCtx = canvasElement.getContext('2d');
+    const motivationOverTimeChart = new Chart(motivationOverTimeCtx, {
+        type: 'line',
+        data: {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7'], // Метки оси X
+            datasets: [{
+                label: 'Motivation Level',
+                data: [30, 40, 35, 50, 45,73, 80], // Данные графика
+                borderColor: '#4e79a7', // Цвет линии
+                backgroundColor: 'rgba(78, 121, 167, 0.2)', // Полупрозрачная заливка под линией
+                borderWidth: 2, // Толщина линии
+                pointRadius: 4, // Размер точек
+                pointBackgroundColor: '#4e79a7', // Цвет точек
+                pointBorderColor: '#fff' // Цвет обводки точек
+            }]
+        },
+        options: {
+            responsive: false, // Отключаем адаптивность
+            maintainAspectRatio: false, // Используем полные размеры ячейки
+            plugins: {
+                legend: {
+                    display: false // Убираем легенду
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Weeks', // Заголовок оси X
+                        font: {
+                            size: 14
+                        }
+                    },
+                    grid: {
+                        display: false // Убираем сетку по оси X
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Motivation Level (%)', // Заголовок оси Y
+                        font: {
+                            size: 14
+                        }
+                    },
+                    min: 0, // Минимум оси Y
+                    max: 100, // Максимум оси Y
+                    ticks: {
+                        stepSize: 20 // Шаг шкалы Y
+                    }
+                }
+            }
+        }
+    });
+       const ctx = document.getElementById('motivationChart').getContext('2d');
 const motivationChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
@@ -298,6 +360,11 @@ const motivationChart = new Chart(ctx, {
     },
     options: {
         responsive: true,
+        layout: {
+            padding: {
+                bottom: 20 // Увеличиваем отступ снизу для легенды
+            }
+        },
         plugins: {
             legend: {
                 position: 'bottom',
@@ -346,6 +413,7 @@ const motivationChart = new Chart(ctx, {
         }
     }]
 });
+
 
     </script>
 </body>
