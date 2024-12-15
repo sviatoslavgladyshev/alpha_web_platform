@@ -113,24 +113,28 @@
     margin-bottom: 10px; /* Уменьшили отступ снизу */
 }
 
-/* Информация об аккаунте справа */
 .account-info {
-    font-size: 16px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
     color: #333;
 }
+
+.account-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Optional: Makes the image circular */
+    margin-right: 10px; /* Space between image and name */
+    margin-top: -2px;
+    margin-bottom: 1px;
+}
+
 
 /* Заголовок */
 .header {
     font-size: 28px;
     margin-bottom: 0; /* Уменьшили отступ снизу */
 }
-
-/* Подчёркивание имени пользователя в аккаунте */
-.account-info strong {
-    color: #4e79a7; /* Цвет имени пользователя */
-}
-
-
         .dashboard {
             display: flex;
             flex-wrap: wrap;
@@ -293,8 +297,6 @@
         </div>
     </div>
     <img src="./LVLUP Logo.png" class="image">
-    <img src="./account.png" class="image1">
-
 
 
     <!-- Main Content -->
@@ -302,9 +304,12 @@
         <div class="header-container">
             <div class="header">Welcome back, Britt</div>
             <div class="account-info">
-                <span>Logged in as: <strong>Alex Thompson</strong></span>
+                <img src="./account.png" class="image1" alt="Account Image">
+                <span>Britt</span>
             </div>
         </div>
+        
+        
         
 
         <!-- Dashboard -->
