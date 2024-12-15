@@ -121,37 +121,111 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 1 1 -1%;
+            flex: 0 0 250px;
             min-width: 250px;
+            max-width: 250px;
         }
 
-        .card h3 {
-            margin-bottom: 10px; /* Увеличиваем отступ под заголовком */
-        }
+        /* Общие стили для карт с прокруткой */
+
+/* Фиксация заголовков */
+.card h3 {
+    position: sticky; /* Закрепление элемента */
+    top: 0; /* Расстояние от верхней границы */
+    background: #ffffff00; /* Белый фон, чтобы заголовок был читаемым */
+    z-index: 2; /* Поверх содержимого */
+    padding: 10px; /* Отступы внутри заголовка */
+}
+
 
         .card1 {
+            position: sticky; /* Закрепление элемента */
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 1 1 45%; /* Grow, shrink, and occupy 45% width */
-            min-width: 250px; /* Optional: To ensure it doesn't get too small */
+            flex: 0 0 890px; /* Grow, shrink, and occupy 45% width */
+            min-width: 890px;
+            max-width: 890px;
+            /* Optional: To ensure it doesn't get too small */
         }
         .card2 {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 1 1 32%; /* Grow, shrink, and occupy 45% width */
-            min-width: 250px; /* Optional: To ensure it doesn't get too small */
-        }
+    background: #fff; /* Белый фон */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 0 0 400px;
+    min-width: 400px;
+    max-width: 400px;
+    font-size: 16px;
+    color: #000; /* Цвет текста */
+}
+
+.card2 h3 {
+    font-size: 20px; /* Заголовок */
+    margin-bottom: 20px; /* Отступ снизу */
+    color: #000; /* Черный текст */
+}
+
+.info-text {
+    font-size: 17px; /* Текст описания */
+    margin-top: 10px;
+    color: #000;
+}
+
+/* Стили кнопок */
+.btn {
+    font-size: 15px; /* Увеличенный размер текста */
+    color: #000; /* Черный текст */
+    background-color: #fff; /* Белый фон */
+    border: 1px solid #ccc; /* Граница */
+    padding: 10px 25px; /* Увеличенный внутренний отступ */
+    border-radius: 10px; /* Закругленные углы */
+    margin-top: 5px;
+    margin-bottom: 7px; /* Увеличенный отступ до следующего текста */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Плавный переход при наведении */
+}
+
+/* Стили кнопок при наведении */
+.btn:hover {
+    background-color: #f0f0f0; /* Светло-серый фон */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Увеличенная тень */
+}
+
+/* Дополнительные стили для разных кнопок */
+.problem-btn {
+    border-color: #ff4d4f;
+}
+
+.challenge-btn {
+    border-color: #4e79a7;
+}
+
+.action-btn {
+    border-color: #4e79a7;
+}
+
+.celebration-btn {
+    border-color: #7a4ec2;
+}
+
+.reward-btn {
+    border-color: #4e79a7;
+}
+
+
+
         .card3 {
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 1 1 45%; /* Grow, shrink, and occupy 45% width */
-            min-width: 250px; /* Optional: To ensure it doesn't get too small */
+            flex: 0 0 740px; /* Grow, shrink, and occupy 45% width */
+            min-width: 740px; /* Optional: To ensure it doesn't get too small */
+            max-width: 740px; /* Optional: To ensure it doesn't get too small */
+
         }
 
         .chart {
@@ -169,7 +243,7 @@
 
         table th, table td {
             padding: 8px;
-            text-align: left;
+            text-align: center;
             border-bottom: 1px solid #ddd;
         }
 
@@ -219,11 +293,22 @@
 
             <!-- Company Intelligence -->
             <div class="card2">
-                <h3>Company intelligence</h3>
-                <p>Prince's motivation has remained very low for the past 2 weeks</p>
-                <button>Problem</button>
-                <button>Create challenge</button>
+                <h3>Company Intelligence</h3>
+                <p class="info-text">Prince's motivation has remained very low for the past 2 weeks</p>
+                <button class="btn problem-btn">Problem</button>
+                <button class="btn challenge-btn">Create challenge</button>
+                
+                <p class="info-text">Aaron has not completed a challenge in 2 weeks</p>
+                <button class="btn problem-btn">Problem</button>
+                <button class="btn action-btn">Create action item</button>
+                
+                <p class="info-text">Chloe's motivation has increased &gt;5% month over month for 3 months</p>
+                <button class="btn celebration-btn">Celebration</button>
+                <button class="btn reward-btn">Generate reward</button>
             </div>
+            
+            
+
 
             <!-- Leaderboard -->
             <div class="card3">
@@ -256,26 +341,26 @@
                     <tr>
                         <td>4</td>
                         <td>Mattis Nurit</td>
-                        <td>High</td>
+                        <td>Middle</td>
                         <td>None</td>
                     </tr>
                     <tr>
                         <td>5</td>
                         <td>Mattis Nurit</td>
-                        <td>High</td>
+                        <td>Middle</td>
                         <td>None</td>
                     </tr>
                     <tr>
                         <td>6</td>
                         <td>Mattis Nurit</td>
-                        <td>High</td>
+                        <td>Low</td>
                         <td>None</td>
                         
                     </tr>
                     <tr>
                         <td>7</td>
                         <td>Mattis Nurit</td>
-                        <td>High</td>
+                        <td>Low</td>
                         <td>None</td>
                     </tr>
                 </table>
@@ -320,10 +405,6 @@
                 x: {
                     title: {
                         display: true,
-                        text: 'Weeks', // Заголовок оси X
-                        font: {
-                            size: 14
-                        }
                     },
                     grid: {
                         display: false // Убираем сетку по оси X
