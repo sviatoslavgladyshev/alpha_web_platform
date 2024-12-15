@@ -141,26 +141,22 @@
             gap: 10px;
         }
 
-        .card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 0 0 250px;
-            min-width: 250px;
-            max-width: 250px;
-        }
-
-        /* Общие стили для карт с прокруткой */
-
-/* Фиксация заголовков */
-.card h3 {
-    position: sticky; /* Закрепление элемента */
-    top: 0; /* Расстояние от верхней границы */
-    background: #ffffff00; /* Белый фон, чтобы заголовок был читаемым */
-    z-index: 2; /* Поверх содержимого */
-    padding: 10px; /* Отступы внутри заголовка */
+        /* Стили для карточки Motivation */
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 0 0 250px;
+    min-width: 250px;
+    max-width: 250px;
 }
+
+.card h3 {
+    font-size: 20px;  /* Убедитесь, что размер шрифта заголовка подходит */
+    margin-bottom: 10px;  /* Отступ снизу */
+}
+
 
 
         .card1 {
@@ -318,7 +314,7 @@
             <div class="card">
                 <h3>Motivation</h3>
                 <canvas id="motivationChart" width="200" height="200" style="margin-top: 20px;"></canvas>
-            </div>
+            </div>            
 
             <!-- Motivation Over Time -->
             <div class="card1">
@@ -414,54 +410,73 @@
     // Линейный график "Motivation over time"
     const motivationOverTimeCtx = canvasElement.getContext('2d');
     const motivationOverTimeChart = new Chart(motivationOverTimeCtx, {
-        type: 'line',
-        data: {
-            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7'], // Метки оси X
-            datasets: [{
-                label: 'Motivation Level',
-                data: [30, 40, 35, 50, 45,73, 80], // Данные графика
-                borderColor: '#4e79a7', // Цвет линии
-                backgroundColor: 'rgba(78, 121, 167, 0.2)', // Полупрозрачная заливка под линией
-                borderWidth: 2, // Толщина линии
-                pointRadius: 4, // Размер точек
-                pointBackgroundColor: '#4e79a7', // Цвет точек
-                pointBorderColor: '#fff' // Цвет обводки точек
-            }]
-        },
-        options: {
-            responsive: false, // Отключаем адаптивность
-            maintainAspectRatio: false, // Используем полные размеры ячейки
-            plugins: {
-                legend: {
-                    display: false // Убираем легенду
-                }
+    type: 'line',
+    data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7'], // Метки оси X
+        datasets: [{
+            label: 'Motivation Level',
+            data: [30, 40, 35, 50, 45, 73, 80], // Данные графика
+            borderColor: '#4e79a7', // Цвет линии
+            backgroundColor: 'rgba(78, 121, 167, 0.2)', // Полупрозрачная заливка под линией
+            borderWidth: 2, // Толщина линии
+            pointRadius: 4, // Размер точек
+            pointBackgroundColor: '#4e79a7', // Цвет точек
+            pointBorderColor: '#fff' // Цвет обводки точек
+        }]
+    },
+    options: {
+        responsive: false, // Отключаем адаптивность
+        maintainAspectRatio: false, // Используем полные размеры ячейки
+        plugins: {
+            legend: {
+                display: false // Убираем легенду
             },
-            scales: {
-                x: {
-                    title: {
-                        display: true,
-                    },
-                    grid: {
-                        display: false // Убираем сетку по оси X
-                    }
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Motivation Level (%)', // Заголовок оси Y
-                        font: {
-                            size: 14
-                        }
-                    },
-                    min: 0, // Минимум оси Y
-                    max: 100, // Максимум оси Y
-                    ticks: {
-                        stepSize: 20 // Шаг шкалы Y
+            tooltip: {
+                enabled: true, // Включение подсказок
+                mode: 'index', // Отображение данных всех точек на текущем X
+                intersect: false, // Позволяет отображать подсказки вне точки
+                callbacks: {
+                    label: function(context) {
+                        return `Motivation: ${context.raw}%`; // Форматируем текст подсказки
                     }
                 }
             }
+        },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    font: {
+                        size: 17 // Увеличиваем шрифт оси X
+                    }
+                },
+                ticks: {
+                    font: {
+                        size: 15 // Увеличиваем шрифт меток оси X
+                    }
+                },
+                grid: {
+                    display: false // Убираем сетку по оси X
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'Motivation Level (%)', // Заголовок оси Y
+                    font: {
+                        size: 17
+                    }
+                },
+                min: 0, // Минимум оси Y
+                max: 100, // Максимум оси Y
+                ticks: {
+                    stepSize: 20 // Шаг шкалы Y
+                }
+            }
         }
-    });
+    }
+});
+
        const ctx = document.getElementById('motivationChart').getContext('2d');
 const motivationChart = new Chart(ctx, {
     type: 'doughnut',
